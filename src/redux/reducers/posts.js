@@ -1,5 +1,4 @@
 import * as ActionTypes from "../ActionTypes";
-//posts reducer
 
 export const Posts = (state = {isLoading: true, errMess: null, posts: []}, action) => {
   switch (action.type) {

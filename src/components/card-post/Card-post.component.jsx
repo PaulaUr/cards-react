@@ -1,10 +1,10 @@
 import React from "react";
-import "./Card.styles.scss";
+import "./Card-post.styles.scss";
 import Icon from "@mdi/react";
 import { mdiHeart } from "@mdi/js";
 import default_image from '../../assets/images/default_image.jpg';
 
-function Card({ post }) {
+function CardPost({ post }) {
   const image = post?.image === undefined ? default_image : post.image;
   const date = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
@@ -32,4 +32,4 @@ function Card({ post }) {
   );
 }
 
-export default Card;
+export default CardPost;

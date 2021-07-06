@@ -1,18 +1,27 @@
 import React from "react";
 import "./Card-list.styles.scss";
 import {Loading} from '../loading/Loading.component';
-import Card from '../card/Card.component';
+import CardPost from '../card-post/Card-post.component';
+import CardUser from '../card-user/Card-user.component';
 
 export const CardList = (props) => {
-  const posts = props.postList.posts.map((post) => {
-    return (
-      <article key={post.id.toString()} className="card">
-          <Card post={post}/>
-      </article>
-    )
+  const posts = props?.list.map((item) => {
+    if (item.owner) {
+      return (
+        <article key={item.id.toString()} className="card">
+            <CardPost post={item}/>
+        </article>
+      )
+    } else if (item.email) {
+      return (
+        <article key={item.id.toString()} className="card">
+            <CardUser user={item}/>
+        </article>
+      )
+    }
   });
 
-  if (props.postList.isLoading) {
+  if (props.isLoading) {
     return (
       <div className="conatiner">
         <div className="row">
@@ -20,11 +29,11 @@ export const CardList = (props) => {
         </div>
       </div>
     );
-  } else if (props.postList.errMess) {
+  } else if (props.errMess) {
     return (
       <div className="conatiner">
         <div className="row">
-          <h4>{props.postList.errMess}</h4>
+          <h4>{props.errMess}</h4>
         </div>
       </div>
     );
